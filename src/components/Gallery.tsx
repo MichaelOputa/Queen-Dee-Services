@@ -16,7 +16,6 @@ function Gallery() {
       title: 'Modern Living Room - After',
       category: 'Residential',
       type: 'after',
-      image: 'public/after.jpg',
       color: 'from-teal-400 to-teal-500',
     },
     {
@@ -156,7 +155,7 @@ function Gallery() {
               Book Your Service
             </button>
             <button className="bg-white text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-teal-600 hover:bg-teal-50 transition-all">
-              Reach Out to Us
+              Request a Quote
             </button>
           </div>
         </div>

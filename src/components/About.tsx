@@ -48,7 +48,7 @@ function About() {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-12 items-center mb-20">
+          <div className="grid lg:grid-cols-2 gap-12 items-start mb-20">
             <div className="space-y-6">
               <h2 className="text-3xl font-bold text-gray-900">Our Story</h2>
               <div className="space-y-4 text-gray-600 leading-relaxed">
@@ -63,7 +63,7 @@ function About() {
                   across Lagos.
                 </p>
                 <p>
-                  Our team of over a number of professional cleaners brings expertise, dedication, and
+                  Our team of over 50 professional cleaners brings expertise, dedication, and
                   attention to detail to every project. We pride ourselves on using eco-friendly
                   products, modern cleaning techniques, and maintaining the highest standards of
                   professionalism.
@@ -76,17 +76,34 @@ function About() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow"
-                >
-                  <div className="text-4xl font-bold text-teal-600 mb-2">{stat.number}</div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
-                </div>
-              ))}
+            <div className="flex flex-col items-center">
+              <div className="relative w-full max-w-sm">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-600 to-teal-700 rounded-3xl transform rotate-3"></div>
+                <img
+                  src="/Queen.jpg"
+                  alt="Queen Dee Services Team"
+                  className="relative rounded-3xl shadow-2xl w-full h-auto object-cover border-4 border-white"
+                />
+              </div>
+              <div className="mt-8 text-center">
+                <p className="text-gray-700 font-semibold mb-2">Founder & CEO</p>
+                <p className="text-teal-600 font-bold text-lg">Queen Dee</p>
+                <p className="text-gray-500 text-sm">Leading Nigeria's Cleaning Revolution</p>
+              </div>
             </div>
+
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {stats.map((stat, index) => (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 text-center hover:shadow-xl transition-shadow"
+              >
+                <div className="text-4xl font-bold text-teal-600 mb-2">{stat.number}</div>
+                <div className="text-gray-600 font-medium">{stat.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
