@@ -35,8 +35,8 @@ function Footer({ setCurrentPage }: FooterProps) {
             <div className="flex items-center space-x-3 mb-6">
               <Logo className="w-12 h-12" />
               <div className="flex flex-col">
-                <span className="text-lg font-bold">Queen Dee Services</span>
-                <span className="text-xs text-teal-400">Premium Cleaning Solutions</span>
+                <span className="text-lg font-bold">Queen Dee Services LTD</span>
+                <span className="text-xs text-teal-400">One Call Cleanse All</span>
               </div>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
@@ -133,13 +133,13 @@ function Footer({ setCurrentPage }: FooterProps) {
               <div className="flex items-start">
                 <MapPin className="w-5 h-5 text-teal-400 mr-3 mt-1 flex-shrink-0" />
                 <span className="text-gray-400">
-                  45 Allen Avenue, Ikeja, Lagos State, Nigeria
+                  20 Fatai Ologundudu Street, Muwo Tedi Ojo Lagos
                 </span>
               </div>
               <div className="flex items-center">
                 <Phone className="w-5 h-5 text-teal-400 mr-3 flex-shrink-0" />
                 <a href="tel:+2348034567890" className="text-gray-400 hover:text-teal-400">
-                  09132433968 | 07013043572
+                  09132433968
                 </a>
               </div>
               <div className="flex items-center">

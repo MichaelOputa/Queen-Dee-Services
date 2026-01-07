@@ -84,7 +84,7 @@ function Booking() {
           </div>
           <p className="text-sm text-gray-500">
             Check your email for confirmation details. For urgent inquiries, call us at{' '}
-            <strong>09132433968 | 07013043572</strong>
+            <strong>+234 913 243 3968</strong>
           </p>
         </div>
       </div>
@@ -295,11 +295,11 @@ function Booking() {
                 <div className="space-y-3">
                   <div className="flex items-center text-gray-700">
                     <Phone className="w-5 h-5 text-teal-600 mr-3" />
-                    <span>07013043572 | 09132433968</span>
+                    <span>+234 913 243 3968</span>
                   </div>
                   <div className="flex items-center text-gray-700">
                     <Mail className="w-5 h-5 text-teal-600 mr-3" />
-                    <span>queendeeservicesqds@gmail.com</span>
+                    <span>booking@queendeeservices.ng</span>
                   </div>
                 </div>
               </div>

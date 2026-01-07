@@ -1,9 +1,13 @@
 import { MessageCircle } from 'lucide-react';
 
 function WhatsAppButton() {
+  const whatsappNumber = '2349132433968';
+  const message = 'Hi! I would like to inquire about your cleaning services.';
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
   return (
     <a
-      href="https://wa.me/2347013043572"
+      href={whatsappLink}
       target="_blank"
       rel="noopener noreferrer"
       className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl hover:shadow-3xl transition-all z-40 group animate-bounce hover:animate-none"

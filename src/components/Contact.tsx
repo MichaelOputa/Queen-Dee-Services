@@ -33,8 +33,8 @@ function Contact() {
   const offices = [
     {
       city: 'Lagos',
-      address: '45 Allen Avenue, Ikeja, Lagos State',
-      phone: '+234 701 304 3572',
+      address: '20 Fatai Ologundudu Street, Muwo Tedi Ojo Lagos.',
+      phone: '+234 913 243 3968',
       email: 'queendeeservicesqds@gmail.com',
     },
   ];
@@ -165,7 +165,6 @@ function Contact() {
                       >
                         <option value="">Select a subject</option>
                         <option value="general">General Inquiry</option>
-                        <option value="quote">Request a Quote</option>
                         <option value="booking">Booking Inquiry</option>
                         <option value="complaint">Complaint</option>
                         <option value="feedback">Feedback</option>
@@ -239,13 +238,13 @@ function Contact() {
                     <div>
                       <p className="text-sm text-gray-600">Call Us</p>
                       <p className="font-semibold text-gray-900 group-hover:text-teal-600">
-                        +234 701 304 3572
+                        +234 913 243 3968
                       </p>
                     </div>
                   </a>
 
                   <a
-                    href="https://wa.me/2347013043572"
+                    href="https://wa.me/2349132433968"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-teal-50 transition-colors group"
@@ -278,7 +277,7 @@ function Contact() {
                 <MapPin className="w-8 h-8 mb-4" />
                 <h3 className="text-xl font-bold mb-3">Head Office</h3>
                 <p className="text-gray-300 mb-4">
-                  45 Allen Avenue, Ikeja, Lagos State, Nigeria
+                  20 Fatai Ologundudu Street, Muwo Tedi Ojo Lagos
                 </p>
                 <a
                   href="https://maps.google.com"

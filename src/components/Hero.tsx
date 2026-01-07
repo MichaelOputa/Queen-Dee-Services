@@ -1,10 +1,6 @@
 import { ArrowRight, CheckCircle, Star, Shield, Clock } from 'lucide-react';
 
-interface HeroProps {
-  onBookClick?: () => false | void;
-}
-
-function Hero({ onBookClick }: HeroProps) {
+function Hero() {
   const features = [
     { icon: Shield, text: 'Trusted by 500+ Nigerian Homes & Businesses' },
     { icon: Star, text: 'Professional & Certified Cleaning Experts' },
@@ -15,7 +11,7 @@ function Hero({ onBookClick }: HeroProps) {
     'Eco-friendly cleaning products',
     'Fully insured & background-checked staff',
     'Satisfaction guaranteed',
-    'Available across Lagos',
+    'Available across Lagos, major Nigerian cities & outside Nigeria',
   ];
 
   return (
@@ -47,13 +43,15 @@ function Hero({ onBookClick }: HeroProps) {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <button
-                  onClick={onBookClick}
+                <a
+                  href="https://wa.me/2349132433968?text=Hi%20Queen%20Dee%20Services!%20I%20would%20like%20to%20book%20a%20cleaning%20service.%20Please%20let%20me%20know%20availability%20and%20pricing."
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
                 >
                   <span>Book a Cleaning</span>
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
+                </a>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-4 pt-8">

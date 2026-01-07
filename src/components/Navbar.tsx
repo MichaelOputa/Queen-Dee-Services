@@ -48,8 +48,8 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           >
             <Logo className="w-10 h-10" />
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">Queen Dee Services</span>
-              <span className="text-xs text-teal-600 font-medium">Premium Cleaning Solutions</span>
+              <span className="text-xl font-bold text-gray-900">Queen Dee Services LTD</span>
+              <span className="text-xs text-teal-600 font-medium">One Call Cleanse All</span>
             </div>
           </div>
 

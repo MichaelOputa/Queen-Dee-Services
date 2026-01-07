@@ -1,91 +1,87 @@
 import { useState } from 'react';
-import { Image as ImageIcon, X } from 'lucide-react';
+import { X } from 'lucide-react';
+
+interface GalleryItem {
+  id: string;
+  title: string;
+  category: string;
+  type: 'before' | 'after';
+  image_url: string;
+}
 
 function Gallery() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
-  const galleryItems = [
+  const galleryItems: GalleryItem[] = [
     {
-      title: 'Modern Living Room - Before',
+      id: '1',
+      title: 'Modern Living Room',
       category: 'Residential',
       type: 'before',
-      image: 'public/before.jpg',
-      color: 'from-gray-400 to-gray-500',
+      image_url: 'public/before.jpg',
     },
     {
-      title: 'Modern Living Room - After',
+      id: '2',
+      title: 'Modern Living Room',
       category: 'Residential',
       type: 'after',
-      color: 'from-teal-400 to-teal-500',
+      image_url: 'public/after.jpg',
     },
     {
-      title: 'Corporate Office - Before',
+      id: '3',
+      title: 'Corporate Office',
       category: 'Commercial',
       type: 'before',
-      color: 'from-gray-400 to-gray-500',
+      image_url: 'https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Corporate Office - After',
+      id: '4',
+      title: 'Corporate Office',
       category: 'Commercial',
       type: 'after',
-      color: 'from-blue-400 to-blue-500',
+      image_url: 'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Kitchen Deep Clean - Before',
+      id: '5',
+      title: 'Kitchen Deep Clean',
       category: 'Deep Cleaning',
       type: 'before',
-      color: 'from-gray-400 to-gray-500',
+      image_url: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Kitchen Deep Clean - After',
+      id: '6',
+      title: 'Kitchen Deep Clean',
       category: 'Deep Cleaning',
       type: 'after',
-      color: 'from-teal-400 to-teal-500',
+      image_url: 'https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Bathroom Renovation - Before',
+      id: '7',
+      title: 'Bathroom Renovation',
       category: 'Post-Construction',
       type: 'before',
-      color: 'from-gray-400 to-gray-500',
+      image_url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
     {
-      title: 'Bathroom Renovation - After',
+      id: '8',
+      title: 'Bathroom Renovation',
       category: 'Post-Construction',
       type: 'after',
-      color: 'from-orange-400 to-orange-500',
-    },
-    {
-      title: 'Conference Room - Before',
-      category: 'Commercial',
-      type: 'before',
-      color: 'from-gray-400 to-gray-500',
-    },
-    {
-      title: 'Conference Room - After',
-      category: 'Commercial',
-      type: 'after',
-      color: 'from-teal-400 to-teal-500',
-    },
-    {
-      title: 'Carpet Cleaning - Before',
-      category: 'Specialized',
-      type: 'before',
-      color: 'from-gray-400 to-gray-500',
-    },
-    {
-      title: 'Carpet Cleaning - After',
-      category: 'Specialized',
-      type: 'after',
-      color: 'from-amber-400 to-amber-500',
+      image_url: 'https://images.pexels.com/photos/5632420/pexels-photo-5632420.jpeg?auto=compress&cs=tinysrgb&w=800',
     },
   ];
 
+  const whatsappLink = (title: string) => {
+    const message = `Hi! I'm interested in your ${title} cleaning service.`;
+    return `https://wa.me/2348034567890?text=${encodeURIComponent(message)}`;
+  };
+
   return (
     <div className="pt-20 bg-white">
-      <section className="py-20 bg-gradient-to-br from-teal-50 to-white">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-teal-600 font-semibold text-sm uppercase tracking-wide">
+            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">
               Our Work
             </span>
             <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mt-3 mb-6">
@@ -100,22 +96,22 @@ function Gallery() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {galleryItems.map((item, index) => (
               <div
-                key={index}
+                key={item.id}
                 onClick={() => setSelectedImage(index)}
                 className="group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer shadow-lg hover:shadow-2xl transition-all"
               >
-                <div
-                  className={`absolute inset-0 bg-gradient-to-br ${item.color} flex items-center justify-center`}
-                >
-                  <ImageIcon className="w-16 h-16 text-white opacity-50" />
-                </div>
+                <img
+                  src={item.image_url}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
 
                 <div className="absolute inset-x-0 bottom-0 p-6 text-white transform translate-y-2 group-hover:translate-y-0 transition-transform">
                   <span
                     className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-2 ${
-                      item.type === 'before' ? 'bg-gray-600' : 'bg-teal-600'
+                      item.type === 'before' ? 'bg-gray-600' : 'bg-blue-600'
                     }`}
                   >
                     {item.type === 'before' ? 'Before' : 'After'}
@@ -129,7 +125,7 @@ function Gallery() {
                     className={`px-3 py-1 rounded-full text-xs font-semibold ${
                       item.type === 'before'
                         ? 'bg-white/90 text-gray-800'
-                        : 'bg-teal-600 text-white'
+                        : 'bg-blue-600 text-white'
                     }`}
                   >
                     {item.category}
@@ -151,17 +147,27 @@ function Gallery() {
             Queen Dee difference.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg hover:shadow-xl">
+            <a
+              href={whatsappLink('cleaning')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
+            >
               Book Your Service
-            </button>
-            <button className="bg-white text-teal-700 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-teal-600 hover:bg-teal-50 transition-all">
+            </a>
+            <a
+              href={whatsappLink('quote')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white text-blue-700 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-blue-600 hover:bg-blue-50 transition-all"
+            >
               Request a Quote
-            </button>
+            </a>
           </div>
         </div>
       </section>
 
-      {selectedImage !== null && (
+      {selectedImage !== null && galleryItems[selectedImage] && (
         <div
           className="fixed inset-0 bg-black/95 z-50 flex items-center justify-center p-4"
           onClick={() => setSelectedImage(null)}
@@ -173,11 +179,11 @@ function Gallery() {
             <X className="w-6 h-6" />
           </button>
           <div className="max-w-5xl w-full">
-            <div
-              className={`aspect-[4/3] rounded-xl bg-gradient-to-br ${galleryItems[selectedImage].color} flex items-center justify-center`}
-            >
-              <ImageIcon className="w-32 h-32 text-white opacity-50" />
-            </div>
+            <img
+              src={galleryItems[selectedImage].image_url}
+              alt={galleryItems[selectedImage].title}
+              className="w-full rounded-xl shadow-2xl"
+            />
             <div className="mt-6 text-center text-white">
               <h3 className="text-2xl font-bold mb-2">{galleryItems[selectedImage].title}</h3>
               <p className="text-gray-300">{galleryItems[selectedImage].category}</p>

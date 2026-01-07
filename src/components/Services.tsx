@@ -165,11 +165,14 @@ function Services() {
                     </ul>
                   </div>
 
-                  <button
-                    className={`w-full bg-gradient-to-r ${service.color} text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all group-hover:translate-y-[-2px]`}
+                  <a
+                    href={`https://wa.me/2349132433968?text=${encodeURIComponent(`Hi Queen Dee Services! I'm interested in your ${service.title} service. Could you provide more details and a quote?`)}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`block w-full bg-gradient-to-r ${service.color} text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all group-hover:translate-y-[-2px] text-center`}
                   >
                     Request This Service
-                  </button>
+                  </a>
                 </div>
               </div>
             ))}
@@ -184,9 +187,14 @@ function Services() {
             Our team is here to help you choose the right cleaning solution. Contact us for a free
             consultation and personalized quote.
           </p>
-          <button className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg hover:shadow-xl">
+          <a
+            href="https://wa.me/2349132433968?text=Hi%20Queen%20Dee%20Services!%20I'd%20like%20to%20schedule%20a%20free%20consultation%20to%20discuss%20which%20cleaning%20service%20would%20be%20best%20for%20me."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg hover:shadow-xl"
+          >
             Get Free Consultation
-          </button>
+          </a>
         </div>
       </section>
     </div>

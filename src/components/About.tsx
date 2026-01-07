@@ -28,7 +28,7 @@ function About() {
     { number: '500+', label: 'Happy Clients' },
     { number: '10,000+', label: 'Jobs Completed' },
     { number: '50+', label: 'Expert Cleaners' },
-    { number: '1', label: 'Major City Served' },
+    { number: '3', label: 'Major Cities Served' },
   ];
 
   return (
@@ -60,7 +60,7 @@ function About() {
                 <p>
                   What started as a passion for creating clean, healthy environments has evolved
                   into a commitment to excellence that serves hundreds of homes and businesses
-                  across Lagos.
+                  across Lagos, Abuja, and Port Harcourt.
                 </p>
                 <p>
                   Our team of over 50 professional cleaners brings expertise, dedication, and
@@ -87,7 +87,8 @@ function About() {
               </div>
               <div className="mt-8 text-center">
                 <p className="text-gray-700 font-semibold mb-2">Founder & CEO</p>
-                <p className="text-teal-600 font-bold text-lg">Queen Dee</p>
+                <p className="text-teal-600 font-bold text-lg">Onikosi Deborah Timileyin Tiaraoluwa</p>
+                <p className='text-teal-600 font-bold text-lg'>known as Queen Dee</p>
                 <p className="text-gray-500 text-sm">Leading Nigeria's Cleaning Revolution</p>
               </div>
             </div>
