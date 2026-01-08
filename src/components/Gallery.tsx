@@ -18,7 +18,7 @@ function Gallery() {
       title: 'Modern Living Room',
       category: 'Residential',
       type: 'before',
-      image_url: 'public/before.jpg',
+      image_url: 'before.jpg',
     },
     {
       id: '2',
@@ -32,48 +32,48 @@ function Gallery() {
       title: 'Corporate Office',
       category: 'Commercial',
       type: 'before',
-      image_url: 'https://images.pexels.com/photos/7974/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800',
+      image_url: 'before 2.jpg',
     },
     {
       id: '4',
       title: 'Corporate Office',
       category: 'Commercial',
       type: 'after',
-      image_url: 'https://images.pexels.com/photos/380768/pexels-photo-380768.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image_url: 'after 2.jpg',
     },
     {
       id: '5',
-      title: 'Kitchen Deep Clean',
+      title: 'Studio Deep Clean',
       category: 'Deep Cleaning',
       type: 'before',
-      image_url: 'https://images.pexels.com/photos/2724749/pexels-photo-2724749.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image_url: 'before 3.jpg',
     },
     {
       id: '6',
-      title: 'Kitchen Deep Clean',
+      title: 'Studio Deep Clean',
       category: 'Deep Cleaning',
       type: 'after',
-      image_url: 'https://images.pexels.com/photos/2062426/pexels-photo-2062426.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image_url: 'after 3.jpg',
     },
     {
       id: '7',
-      title: 'Bathroom Renovation',
-      category: 'Post-Construction',
+      title: 'Air conditioning Unit Cleaning',
+      category: 'Air Conditioning',
       type: 'before',
-      image_url: 'https://images.pexels.com/photos/534220/pexels-photo-534220.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image_url: 'before 4.jpg',
     },
     {
       id: '8',
-      title: 'Bathroom Renovation',
-      category: 'Post-Construction',
+      title: 'Air Conditioning Unit Cleaning',
+      category: 'Air Conditioning',
       type: 'after',
-      image_url: 'https://images.pexels.com/photos/5632420/pexels-photo-5632420.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image_url: 'after 4.jpg',
     },
   ];
 
   const whatsappLink = (title: string) => {
     const message = `Hi! I'm interested in your ${title} cleaning service.`;
-    return `https://wa.me/2348034567890?text=${encodeURIComponent(message)}`;
+    return `https://wa.me/2349132433968?text=${encodeURIComponent(message)}`;
   };
 
   return (
@@ -148,20 +148,12 @@ function Gallery() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href={whatsappLink('cleaning')}
+              href={whatsappLink('')}
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-blue-700 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl"
             >
               Book Your Service
-            </a>
-            <a
-              href={whatsappLink('quote')}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white text-blue-700 px-8 py-4 rounded-lg font-semibold text-lg border-2 border-blue-600 hover:bg-blue-50 transition-all"
-            >
-              Request a Quote
             </a>
           </div>
         </div>
