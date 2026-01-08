@@ -25,7 +25,7 @@ function Gallery() {
       title: 'Modern Living Room',
       category: 'Residential',
       type: 'after',
-      image_url: 'public/after.jpg',
+      image_url: 'after.jpg',
     },
     {
       id: '3',
