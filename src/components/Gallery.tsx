@@ -43,14 +43,14 @@ function Gallery() {
     },
     {
       id: '5',
-      title: 'Studio Deep Clean',
+      title: 'Bedroom Deep Clean',
       category: 'Deep Cleaning',
       type: 'before',
       image_url: 'before 3.jpg',
     },
     {
       id: '6',
-      title: 'Studio Deep Clean',
+      title: 'Bedroom Deep Clean',
       category: 'Deep Cleaning',
       type: 'after',
       image_url: 'after 3.jpg',
