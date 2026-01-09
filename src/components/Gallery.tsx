@@ -15,14 +15,14 @@ function Gallery() {
   const galleryItems: GalleryItem[] = [
     {
       id: '1',
-      title: 'Modern Living Room',
+      title: 'Modern Bed Room',
       category: 'Residential',
       type: 'before',
       image_url: 'before.jpg',
     },
     {
       id: '2',
-      title: 'Modern Living Room',
+      title: 'Modern Bed Room',
       category: 'Residential',
       type: 'after',
       image_url: 'after.jpg',
