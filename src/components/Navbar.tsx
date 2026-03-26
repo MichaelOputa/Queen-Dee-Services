@@ -36,9 +36,13 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
 
   return (
     <nav
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-lg' : 'bg-white/95 backdrop-blur-sm'
-      }`}
+      className="fixed w-full z-50 transition-all duration-300"
+      style={{
+        background: isScrolled ? '#0a0f2e' : 'rgba(10,15,46,0.97)',
+        backdropFilter: 'blur(12px)',
+        borderBottom: '1px solid rgba(201,168,76,0.25)',
+        boxShadow: isScrolled ? '0 4px 24px rgba(10,15,46,0.4)' : 'none',
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -48,8 +52,8 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
           >
             <Logo className="w-10 h-10" />
             <div className="flex flex-col">
-              <span className="text-xl font-bold text-gray-900">Queen Dee Services LTD</span>
-              <span className="text-xs text-teal-600 font-medium">One Call Cleanse All</span>
+              <span className="text-xl font-bold text-white">Queen Dee Services LTD</span>
+              <span className="text-xs font-medium" style={{color: '#C9A84C'}}>One Call Cleanse All</span>
             </div>
           </div>
 
@@ -58,25 +62,30 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
               <button
                 key={link.page}
                 onClick={() => handleNavClick(link.page)}
-                className={`text-sm font-medium transition-colors ${
-                  currentPage === link.page
-                    ? 'text-teal-600'
-                    : 'text-gray-700 hover:text-teal-600'
-                }`}
+                className="text-sm font-medium transition-colors"
+                style={{
+                  color: currentPage === link.page ? '#C9A84C' : '#c8d0e8',
+                }}
+                onMouseEnter={e => { if (currentPage !== link.page) e.currentTarget.style.color = '#C9A84C'; }}
+                onMouseLeave={e => { if (currentPage !== link.page) e.currentTarget.style.color = '#c8d0e8'; }}
               >
                 {link.name}
               </button>
             ))}
             <button
               onClick={() => handleNavClick('booking')}
-              className="bg-gradient-to-r from-teal-600 to-teal-700 text-white px-6 py-2.5 rounded-lg font-medium hover:from-teal-700 hover:to-teal-800 transition-all shadow-md hover:shadow-lg"
+              className="px-6 py-2.5 rounded-lg font-medium transition-all shadow-md"
+              style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e', fontWeight: 700}}
+              onMouseEnter={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #b8963e, #C9A84C)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #C9A84C, #e8c96a)')}
             >
               Book Now
             </button>
           </div>
 
           <button
-            className="md:hidden text-gray-700"
+            className="md:hidden"
+            style={{color: '#C9A84C'}}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
             {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -85,24 +94,25 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
       </div>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-100">
+        <div style={{background: '#0a0f2e', borderTop: '1px solid rgba(201,168,76,0.2)'}}>
           <div className="px-4 py-4 space-y-3">
             {navLinks.map((link) => (
               <button
                 key={link.page}
                 onClick={() => handleNavClick(link.page)}
-                className={`block w-full text-left px-4 py-2 rounded-lg transition-colors ${
-                  currentPage === link.page
-                    ? 'bg-teal-50 text-teal-600 font-medium'
-                    : 'text-gray-700 hover:bg-gray-50'
-                }`}
+                className="block w-full text-left px-4 py-2 rounded-lg transition-colors"
+                style={{
+                  background: currentPage === link.page ? 'rgba(201,168,76,0.15)' : 'transparent',
+                  color: currentPage === link.page ? '#C9A84C' : '#c8d0e8',
+                }}
               >
                 {link.name}
               </button>
             ))}
             <button
               onClick={() => handleNavClick('booking')}
-              className="w-full bg-gradient-to-r from-teal-600 to-teal-700 text-white px-4 py-2.5 rounded-lg font-medium hover:from-teal-700 hover:to-teal-800 transition-all"
+              className="w-full px-4 py-2.5 rounded-lg font-bold transition-all"
+              style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}
             >
               Book Now
             </button>

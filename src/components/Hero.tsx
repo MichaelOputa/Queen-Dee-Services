@@ -16,27 +16,28 @@ function Hero() {
 
   return (
     <div className="pt-20">
-      <section className="relative bg-gradient-to-br from-teal-50 via-white to-gray-50 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0YjhhNiIgc3Ryb2tlLW9wYWNpdHk9IjAuMDUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-40"></div>
+      <section className="relative bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 overflow-hidden" style={{background: 'linear-gradient(135deg, #0a0f2e 0%, #0d1540 40%, #111a5c 100%)'}}>
+        {/* Gold geometric pattern overlay */}
+        <div className="absolute inset-0 opacity-10" style={{backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'%3E%3Cpath d='M 10 0 L 0 0 0 10' fill='none' stroke='%23C9A84C' stroke-width='1'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23grid)'/%3E%3C/svg%3E")`}}></div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fade-in">
+            <div className="space-y-8">
               <div className="inline-block">
-                <span className="bg-teal-100 text-teal-800 text-sm font-semibold px-4 py-2 rounded-full">
+                <span className="border border-yellow-500 text-yellow-400 text-sm font-semibold px-4 py-2 rounded-full" style={{background: 'rgba(201,168,76,0.1)'}}>
                   Nigeria's Premier Cleaning Company
                 </span>
               </div>
 
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
                 Premium Cleaning Solutions for{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-teal-800">
+                <span style={{color: '#C9A84C'}}>
                   Homes & Businesses
                 </span>{' '}
                 Across Nigeria
               </h1>
 
-              <p className="text-lg text-gray-600 leading-relaxed">
+              <p className="text-lg leading-relaxed" style={{color: '#c8d0e8'}}>
                 Experience the difference with Queen Dee Services LTD. We deliver exceptional
                 cleaning services that transform your spaces into pristine environments. From
                 residential homes to corporate offices, we ensure every corner sparkles.
@@ -47,45 +48,49 @@ function Hero() {
                   href="https://wa.me/2349132433968?text=Hi%20Queen%20Dee%20Services!%20I%20would%20like%20to%20book%20a%20cleaning%20service.%20Please%20let%20me%20know%20availability%20and%20pricing."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group bg-gradient-to-r from-teal-600 to-teal-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:from-teal-700 hover:to-teal-800 transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
+                  className="group text-white px-8 py-4 rounded-lg font-semibold text-lg transition-all shadow-lg hover:shadow-xl flex items-center justify-center space-x-2"
+                  style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)'}}
+                  onMouseEnter={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #b8963e, #C9A84C)')}
+                  onMouseLeave={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #C9A84C, #e8c96a)')}
                 >
-                  <span>Book a Cleaning</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  <span style={{color: '#0a0f2e', fontWeight: 700}}>Book a Cleaning</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" style={{color: '#0a0f2e'}} />
                 </a>
               </div>
 
               <div className="grid sm:grid-cols-3 gap-4 pt-8">
                 {features.map((feature, index) => (
                   <div key={index} className="flex items-start space-x-2">
-                    <feature.icon className="w-5 h-5 text-teal-600 flex-shrink-0 mt-1" />
-                    <span className="text-sm text-gray-700 leading-snug">{feature.text}</span>
+                    <feature.icon className="w-5 h-5 flex-shrink-0 mt-1" style={{color: '#C9A84C'}} />
+                    <span className="text-sm leading-snug" style={{color: '#c8d0e8'}}>{feature.text}</span>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* Living room image */}
             <div className="relative">
-              <div className="aspect-square bg-gradient-to-br from-teal-100 to-teal-50 rounded-3xl overflow-hidden shadow-2xl">
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center space-y-4 p-8">
-                    <div className="w-32 h-32 mx-auto bg-white rounded-full shadow-lg flex items-center justify-center">
-                      <Star className="w-16 h-16 text-teal-600" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      Sparkling Clean Spaces
-                    </h3>
-                    <p className="text-gray-600">Professional cleaning you can trust</p>
-                  </div>
+              <div className="absolute -inset-4 rounded-3xl opacity-30 blur-xl" style={{background: 'linear-gradient(135deg, #C9A84C, #0a0f2e)'}}></div>
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2" style={{borderColor: 'rgba(201,168,76,0.4)'}}>
+                <img
+                  src="/living room.jpeg"
+                  alt="Beautifully cleaned living room by Queen Dee Services"
+                  className="w-full h-auto object-cover"
+                  style={{maxHeight: '520px', objectFit: 'cover'}}
+                />
+                <div className="absolute inset-0" style={{background: 'linear-gradient(to top, rgba(10,15,46,0.6) 0%, transparent 60%)'}}></div>
+                <div className="absolute bottom-4 left-4 right-4">
+                  <p className="text-white font-semibold text-sm" style={{color: '#C9A84C'}}>✦ Post-Construction Clean — Real Results</p>
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100">
+              <div className="absolute -bottom-6 -right-6 bg-white p-5 rounded-2xl shadow-xl border border-gray-100" style={{background: '#0a0f2e', borderColor: 'rgba(201,168,76,0.5)'}}>
                 <div className="flex items-center space-x-3">
-                  <div className="bg-teal-100 p-3 rounded-lg">
-                    <CheckCircle className="w-6 h-6 text-teal-600" />
+                  <div className="p-3 rounded-lg" style={{background: 'rgba(201,168,76,0.2)'}}>
+                    <CheckCircle className="w-6 h-6" style={{color: '#C9A84C'}} />
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-gray-900">98%</div>
-                    <div className="text-sm text-gray-600">Satisfaction Rate</div>
+                    <div className="text-2xl font-bold text-white">98%</div>
+                    <div className="text-sm" style={{color: '#c8d0e8'}}>Satisfaction Rate</div>
                   </div>
                 </div>
               </div>
@@ -94,13 +99,13 @@ function Hero() {
         </div>
       </section>
 
-      <section className="py-16 bg-white border-t border-gray-100">
+      <section className="py-16 border-t" style={{background: '#f8f6f0', borderColor: '#e8d9b0'}}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold mb-4" style={{color: '#0a0f2e'}}>
               Why Choose Queen Dee Services?
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="max-w-2xl mx-auto" style={{color: '#4a5568'}}>
               We stand out as Nigeria's trusted cleaning partner, committed to excellence in every
               service we provide.
             </p>
@@ -110,10 +115,11 @@ function Hero() {
             {highlights.map((highlight, index) => (
               <div
                 key={index}
-                className="bg-gradient-to-br from-gray-50 to-white p-6 rounded-xl border border-gray-100 hover:shadow-lg transition-all"
+                className="p-6 rounded-xl border hover:shadow-lg transition-all"
+                style={{background: 'white', borderColor: '#e8d9b0'}}
               >
-                <CheckCircle className="w-8 h-8 text-teal-600 mb-3" />
-                <p className="text-gray-900 font-medium">{highlight}</p>
+                <CheckCircle className="w-8 h-8 mb-3" style={{color: '#C9A84C'}} />
+                <p className="font-medium" style={{color: '#0a0f2e'}}>{highlight}</p>
               </div>
             ))}
           </div>

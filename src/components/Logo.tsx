@@ -1,106 +1,86 @@
-function Logo({ className = "w-12 h-12" }: { className?: string }) {
+function Logo({ className = "w-48 h-56" }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 200 220"
+      viewBox="0 0 280 340"
       className={className}
       xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="xMidYMid meet"
     >
       <defs>
         <style>
           {`
-            .logo-text { font-family: Arial, sans-serif; font-weight: bold; }
-            .logo-subtext { font-family: Arial, sans-serif; font-size: 14px; letter-spacing: 2px; }
+            .logo-text { font-family: Arial, Helvetica, sans-serif; font-weight: 900; }
+            .logo-subtext { font-family: Arial, Helvetica, sans-serif; font-weight: 400; }
           `}
         </style>
       </defs>
 
-      <g id="cleaning-tools">
-        <g id="spray-bottle-left">
-          <rect x="25" y="55" width="12" height="35" fill="#1a1a1a" />
-          <rect x="20" y="50" width="22" height="8" fill="#1a1a1a" rx="2" />
-          <ellipse cx="48" cy="65" rx="8" ry="5" fill="#1a1a1a" />
-          <path
-            d="M48 70 L42 85 L48 90 L54 85 Z"
-            fill="#1a1a1a"
-          />
-          <line x1="52" y1="72" x2="65" y2="60" stroke="#1a1a1a" strokeWidth="1.5" />
-          <line x1="54" y1="75" x2="68" y2="62" stroke="#1a1a1a" strokeWidth="1.5" />
-          <line x1="56" y1="78" x2="70" y2="64" stroke="#1a1a1a" strokeWidth="1.5" />
-        </g>
-
-        <g id="broom">
-          <rect x="94" y="35" width="6" height="50" fill="#1a1a1a" rx="3" />
-          <path
-            d="M 90 85 Q 94 95 98 85 Q 100 80 98 75 Q 96 72 94 75 Q 92 78 90 85"
-            fill="#1a1a1a"
-          />
-          <rect x="92" y="78" width="4" height="15" fill="#1a1a1a" />
-          <rect x="98" y="78" width="4" height="15" fill="#1a1a1a" />
-        </g>
-
-        <g id="spray-bottle-right">
-          <rect x="163" y="55" width="12" height="35" fill="#1a1a1a" />
-          <rect x="158" y="50" width="22" height="8" fill="#1a1a1a" rx="2" />
-          <ellipse cx="152" cy="65" rx="8" ry="5" fill="#1a1a1a" />
-          <path
-            d="M152 70 L146 85 L152 90 L158 85 Z"
-            fill="#1a1a1a"
-          />
-          <line x1="148" y1="72" x2="135" y2="60" stroke="#1a1a1a" strokeWidth="1.5" />
-          <line x1="146" y1="75" x2="132" y2="62" stroke="#1a1a1a" strokeWidth="1.5" />
-          <line x1="144" y1="78" x2="130" y2="64" stroke="#1a1a1a" strokeWidth="1.5" />
-        </g>
-
-        <g id="bucket">
-          <path
-            d="M 75 80 L 70 100 L 130 100 L 125 80 Z"
-            fill="#1a1a1a"
-          />
-          <path
-            d="M 72 78 L 128 78 Q 130 75 128 70 L 74 70 Q 72 75 72 78"
-            fill="#1a1a1a"
-          />
-          <path
-            d="M 75 100 Q 75 115 100 120 Q 125 115 125 100"
-            fill="#0052cc"
-            stroke="#1a1a1a"
-            strokeWidth="2"
-          />
-        </g>
+      <g id="hammer-top">
+        <rect x="110" y="20" width="8" height="35" fill="#000" />
+        <path d="M 85 18 Q 120 8 150 20 L 145 25 Q 115 15 90 22 Z" fill="#000" />
       </g>
 
-      <g id="banner">
-        <path
-          d="M 40 115 Q 100 125 160 115 Q 160 120 100 130 Q 40 120 40 115"
-          fill="#1a1a1a"
-        />
-        <ellipse cx="100" cy="127" rx="58" ry="8" fill="#0052cc" opacity="0.9" />
+      <g id="spray-bottle-left">
+        <rect x="35" y="70" width="18" height="50" rx="2" fill="#000" />
+        <rect x="28" y="62" width="32" height="12" rx="3" fill="#000" />
+
+        <circle cx="25" cy="82" r="6" fill="#000" />
+        <path d="M 20 82 L 10 70 M 22 88 L 8 78 M 24 94 L 10 86 M 26 100 L 12 92" stroke="#000" strokeWidth="2" strokeLinecap="round" />
+
+        <path d="M 44 85 L 55 75 L 48 65" fill="#000" />
+      </g>
+
+      <g id="feather-duster">
+        <rect x="135" y="48" width="10" height="55" fill="#000" />
+        <path d="M 125 103 L 135 95 L 145 103 L 155 95 L 150 110 L 140 105 L 130 110 Z" fill="#000" />
+        <path d="M 125 98 L 130 108 M 135 100 L 140 112 M 145 98 L 150 108 M 155 100 L 160 110" stroke="#000" strokeWidth="1.5" />
+      </g>
+
+      <g id="spray-bottle-right">
+        <rect x="227" y="70" width="18" height="50" rx="2" fill="#000" />
+        <rect x="220" y="62" width="32" height="12" rx="3" fill="#000" />
+
+        <circle cx="255" cy="82" r="6" fill="#000" />
+        <path d="M 260 82 L 270 70 M 258 88 L 272 78 M 256 94 L 270 86 M 254 100 L 268 92" stroke="#000" strokeWidth="2" strokeLinecap="round" />
+
+        <path d="M 236 85 L 225 75 L 232 65" fill="#000" />
+      </g>
+
+      <g id="bucket-and-banner">
+        <path d="M 70 125 L 60 150 L 220 150 L 210 125 Z" fill="#000" />
+        <path d="M 65 120 L 215 120 Q 220 118 220 115 L 60 115 Q 60 118 65 120" fill="#000" />
+
+        <path d="M 70 150 Q 70 170 140 180 Q 210 170 210 150" fill="#0052CC" stroke="#000" strokeWidth="3" />
       </g>
 
       <g id="text">
         <text
-          x="100"
-          y="160"
+          x="140"
+          y="225"
           textAnchor="middle"
-          fontSize="32"
-          fontWeight="bold"
-          fill="#1a1a1a"
+          fontSize="48"
+          fontWeight="900"
+          fill="#000"
           className="logo-text"
+          letterSpacing="-1"
         >
           QUEEN DEE
         </text>
-        <line x1="60" y1="168" x2="75" y2="168" stroke="#0052cc" strokeWidth="1.5" />
+
+        <line x1="70" y1="238" x2="100" y2="238" stroke="#000" strokeWidth="1.5" />
+        <line x1="180" y1="238" x2="210" y2="238" stroke="#000" strokeWidth="1.5" />
+
         <text
-          x="100"
-          y="185"
+          x="140"
+          y="265"
           textAnchor="middle"
-          fontSize="12"
-          fill="#666"
+          fontSize="16"
+          fill="#000"
           className="logo-subtext"
+          letterSpacing="3"
         >
           Services
         </text>
-        <line x1="125" y1="168" x2="140" y2="168" stroke="#0052cc" strokeWidth="1.5" />
       </g>
     </svg>
   );
