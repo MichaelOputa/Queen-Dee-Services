@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import Logo from './Logo';
 
 interface NavbarProps {
   currentPage: string;
@@ -47,13 +46,26 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <div
-            className="flex items-center space-x-3 cursor-pointer"
+            className="flex items-center space-x-4 cursor-pointer"
             onClick={() => handleNavClick('home')}
           >
-            <Logo className="w-10 h-10" />
-            <div className="flex flex-col">
-              <span className="text-xl font-bold text-white">Queen Dee Services LTD</span>
-              <span className="text-xs font-medium" style={{color: '#C9A84C'}}>One Call Cleanse All</span>
+            <img
+              src="/ltd.jpeg"
+              alt="Queen Dee Integrated Services LTD"
+              style={{
+                width: '64px',
+                height: '64px',
+                objectFit: 'contain',
+                borderRadius: '10px',
+                border: '2px solid rgba(201,168,76,0.7)',
+                boxShadow: '0 0 14px rgba(201,168,76,0.45), 0 2px 8px rgba(0,0,0,0.4)',
+                background: '#0a0f2e',
+              }}
+            />
+            <div className="flex flex-col leading-tight">
+              <span className="font-extrabold text-white tracking-wide" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Queen Dee Integrated</span>
+              <span className="font-extrabold text-white tracking-wide" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Services LTD</span>
+              <span className="text-xs font-semibold" style={{color: '#C9A84C', letterSpacing: '0.08em'}}>One Call Cleanse All</span>
             </div>
           </div>
 

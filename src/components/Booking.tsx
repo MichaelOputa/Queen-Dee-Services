@@ -1,17 +1,59 @@
 import { useState } from 'react';
-import { Calendar, Clock, MapPin, User, Mail, Phone, MessageSquare, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Calendar, Clock, MapPin, User, Mail, Phone, MessageSquare, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
+
+// ─── EmailJS config ──────────────────────────────────────────────────────────
+// 1. Sign up free at https://www.emailjs.com
+// 2. Add a Gmail service → copy the Service ID below
+// 3. Create an Email Template with these variables:
+//    {{from_name}}, {{from_email}}, {{phone}}, {{address}},
+//    {{service}}, {{date}}, {{time}}, {{notes}}
+//    Set "To Email" to: queendeeservicesqds@gmail.com
+// 4. Copy your Public Key from Account → API Keys
+const EMAILJS_SERVICE_ID  = 'service_8mpjnr9';   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'template_8lef2cg';  // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY  = 'pecAfT7K_IOqPfuSt';   // e.g. 'AbCdEfGhIjKlMnOp'
+// ─────────────────────────────────────────────────────────────────────────────
 
 function Booking() {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', address: '', service: '', date: '', time: '', notes: '' });
+  const emptyForm = { name: '', email: '', phone: '', address: '', service: '', date: '', time: '', notes: '' };
+  const [formData, setFormData] = useState(emptyForm);
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending]   = useState(false);
+  const [error, setError]       = useState('');
 
   const services = ['Residential Cleaning', 'Office & Corporate Cleaning', 'Post-Construction Cleaning', 'Move-In/Move-Out Cleaning', 'Deep Cleaning', 'Fumigation & Pest Control', 'Janitorial Services', 'Upholstery & Carpet Cleaning'];
   const timeSlots = ['8:00 AM - 10:00 AM', '10:00 AM - 12:00 PM', '12:00 PM - 2:00 PM', '2:00 PM - 4:00 PM', '4:00 PM - 6:00 PM'];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => { setSubmitted(false); setFormData({ name: '', email: '', phone: '', address: '', service: '', date: '', time: '', notes: '' }); }, 5000);
+    setSending(true);
+    setError('');
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone:      formData.phone,
+          address:    formData.address,
+          service:    formData.service,
+          date:       formData.date,
+          time:       formData.time,
+          notes:      formData.notes || 'None',
+          to_email:   'queendeeservicesqds@gmail.com',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Failed to send booking. Please try again or WhatsApp us directly.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -31,16 +73,28 @@ function Booking() {
           <div className="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6" style={{background: 'rgba(201,168,76,0.2)'}}>
             <CheckCircle className="w-10 h-10" style={{color: '#C9A84C'}} />
           </div>
-          <h2 className="text-3xl font-bold text-white mb-4">Booking Received!</h2>
-          <p className="mb-6 leading-relaxed" style={{color: '#c8d0e8'}}>Thank you for choosing Queen Dee Services! We will contact you within 24 hours to confirm your appointment.</p>
+          <h2 className="text-3xl font-bold text-white mb-4">Booking Sent! 🎉</h2>
+          <p className="mb-6 leading-relaxed" style={{color: '#c8d0e8'}}>
+            Your booking request has been emailed to <strong style={{color: '#C9A84C'}}>queendeeservicesqds@gmail.com</strong>. We will contact you within 24 hours to confirm.
+          </p>
           <div className="p-4 rounded-lg mb-6" style={{background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.2)'}}>
             <p className="text-sm" style={{color: '#c8d0e8'}}>
+              <strong style={{color: '#C9A84C'}}>Name:</strong> {formData.name}<br />
               <strong style={{color: '#C9A84C'}}>Service:</strong> {formData.service}<br />
-              <strong style={{color: '#C9A84C'}}>Preferred Date:</strong> {formData.date}<br />
-              <strong style={{color: '#C9A84C'}}>Time Slot:</strong> {formData.time}
+              <strong style={{color: '#C9A84C'}}>Date:</strong> {formData.date}<br />
+              <strong style={{color: '#C9A84C'}}>Time:</strong> {formData.time}
             </p>
           </div>
-          <p className="text-sm" style={{color: '#8899bb'}}>For urgent inquiries, call us at <strong style={{color: '#C9A84C'}}>+234 913 243 3968</strong></p>
+          <p className="text-sm mb-6" style={{color: '#8899bb'}}>
+            For urgent inquiries, call or WhatsApp: <strong style={{color: '#C9A84C'}}>+234 913 243 3968</strong>
+          </p>
+          <button
+            onClick={() => { setSubmitted(false); setFormData(emptyForm); }}
+            className="px-6 py-3 rounded-lg font-bold transition-all"
+            style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}
+          >
+            Make Another Booking
+          </button>
         </div>
       </div>
     );
@@ -115,8 +169,32 @@ function Booking() {
                   </label>
                   <textarea name="notes" value={formData.notes} onChange={handleChange} rows={4} style={{...inputStyle, resize: 'none'}} placeholder="Any specific requirements or instructions?" />
                 </div>
-                <button type="submit" className="w-full py-4 rounded-lg font-bold text-lg shadow-lg transition-all" style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}>
-                  Submit Booking Request
+                {/* Error banner */}
+                {error && (
+                  <div className="mb-6 p-4 rounded-lg flex items-start gap-3" style={{background: 'rgba(239,68,68,0.15)', border: '1px solid rgba(239,68,68,0.4)'}}>
+                    <AlertCircle className="w-5 h-5 flex-shrink-0 mt-0.5" style={{color: '#f87171'}} />
+                    <p className="text-sm" style={{color: '#fca5a5'}}>{error}</p>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="w-full py-4 rounded-lg font-bold text-lg shadow-lg transition-all flex items-center justify-center gap-3"
+                  style={{
+                    background: sending ? 'rgba(201,168,76,0.5)' : 'linear-gradient(135deg, #C9A84C, #e8c96a)',
+                    color: '#0a0f2e',
+                    cursor: sending ? 'not-allowed' : 'pointer',
+                  }}
+                >
+                  {sending ? (
+                    <>
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending Booking…
+                    </>
+                  ) : (
+                    'Submit Booking Request'
+                  )}
                 </button>
               </form>
             </div>
@@ -143,7 +221,7 @@ function Booking() {
                   </div>
                   <div className="flex items-center" style={{color: '#c8d0e8'}}>
                     <Mail className="w-5 h-5 mr-3" style={{color: '#C9A84C'}} />
-                    <span>booking@queendeeservices.ng</span>
+                    <span>queendeeservicesqds@gmail.com</span>
                   </div>
                 </div>
               </div>

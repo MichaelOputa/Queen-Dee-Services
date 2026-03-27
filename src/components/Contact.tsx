@@ -123,7 +123,7 @@ function Contact() {
                   {[
                     { href: 'tel:+2349132433968', icon: Phone, label: 'Call Us', value: '+234 913 243 3968' },
                     { href: 'https://wa.me/2349132433968', icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us' },
-                    { href: 'mailto:queendeeservicesqds@gmail.com', icon: Mail, label: 'Email Us', value: 'queendeeservicesqds@gmail.com' },
+                    { href: 'mailto:de', icon: Mail, label: 'Email Us', value: 'queendeeservicesqds@gmail.com' },
                   ].map(({ href, icon: Icon, label, value }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg transition-colors" style={{background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.1)'}}>
                       <Icon className="w-6 h-6 mr-3" style={{color: '#C9A84C'}} />

@@ -1,5 +1,4 @@
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from 'lucide-react';
-import Logo from './Logo';
 
 interface FooterProps {
   setCurrentPage: (page: string) => void;
@@ -25,11 +24,25 @@ function Footer({ setCurrentPage }: FooterProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <div className="flex items-center space-x-3 mb-6">
-              <Logo className="w-12 h-12" />
-              <div className="flex flex-col">
-                <span className="text-lg font-bold text-white">Queen Dee Services LTD</span>
-                <span className="text-xs" style={{color: '#C9A84C'}}>One Call Cleanse All</span>
+            <div className="flex items-center space-x-4 mb-6">
+              <img
+                src="/ltd.jpeg"
+                alt="Queen Dee Integrated Services LTD"
+                style={{
+                  width: '70px',
+                  height: '70px',
+                  objectFit: 'contain',
+                  borderRadius: '10px',
+                  border: '2px solid rgba(201,168,76,0.7)',
+                  boxShadow: '0 0 16px rgba(201,168,76,0.4), 0 2px 10px rgba(0,0,0,0.5)',
+                  background: '#0a0f2e',
+                  flexShrink: 0,
+                }}
+              />
+              <div className="flex flex-col leading-tight">
+                <span className="font-extrabold text-white" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Queen Dee Integrated</span>
+                <span className="font-extrabold text-white" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Services LTD</span>
+                <span className="text-xs font-semibold" style={{color: '#C9A84C', letterSpacing: '0.08em'}}>One Call Cleanse All</span>
               </div>
             </div>
             <p className="mb-6 leading-relaxed" style={{color: '#8899bb'}}>Nigeria's trusted cleaning partner, delivering exceptional service across Lagos. Professional, reliable, and committed to excellence.</p>
