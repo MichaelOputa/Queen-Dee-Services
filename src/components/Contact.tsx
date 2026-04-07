@@ -123,7 +123,7 @@ function Contact() {
                   {[
                     { href: 'tel:+2349132433968', icon: Phone, label: 'Call Us', value: '+234 913 243 3968' },
                     { href: 'https://wa.me/2349132433968', icon: MessageCircle, label: 'WhatsApp', value: 'Chat with us' },
-                    { href: 'mailto:de', icon: Mail, label: 'Email Us', value: 'queendeeservicesqds@gmail.com' },
+                    { href: 'mailto:queendeeservicesqds@gmail.com', icon: Mail, label: 'Email Us', value: 'queendeeservicesqds@gmail.com' },
                   ].map(({ href, icon: Icon, label, value }) => (
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer" className="flex items-center p-4 rounded-lg transition-colors" style={{background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(201,168,76,0.1)'}}>
                       <Icon className="w-6 h-6 mr-3" style={{color: '#C9A84C'}} />
@@ -140,7 +140,13 @@ function Contact() {
                 <MapPin className="w-8 h-8 mb-4" style={{color: '#C9A84C'}} />
                 <h3 className="text-xl font-bold text-white mb-3">Head Office</h3>
                 <p className="mb-4" style={{color: '#c8d0e8'}}>20 Fatai Ologundudu Street, Muwo Tedi Ojo Lagos</p>
-                <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 rounded-lg font-medium transition-colors" style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}>
+                <a
+                  href="https://www.google.com/maps/search/20+Fatai+Ologundudu+Street+Muwo+Tedi+Ojo+Lagos"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-6 py-2 rounded-lg font-medium transition-colors"
+                  style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}
+                >
                   Get Directions
                 </a>
               </div>
@@ -149,9 +155,35 @@ function Contact() {
         </div>
       </section>
 
+      {/* Google Maps embed — searches the exact address so the pin lands correctly */}
       <section className="py-0 bg-white">
-        <div className="w-full h-96 bg-gray-200">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.3920289457376!2d3.3515598!3d6.5964!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMzUnNDcuMCJOIDPCsDIxJzA1LjYiRQ!5e0!3m2!1sen!2sng!4v1234567890" width="100%" height="100%" style={{border: 0}} allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade" title="Queen Dee Services Location"></iframe>
+        <div className="w-full" style={{height: '420px'}}>
+          <iframe
+            src="https://maps.google.com/maps?q=20+Fatai+Ologundudu+Street%2C+Muwo+Tedi+Ojo%2C+Lagos&t=&z=16&ie=UTF8&iwloc=&output=embed"
+            width="100%"
+            height="100%"
+            style={{border: 0, display: 'block'}}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Queen Dee Services — 20 Fatai Ologundudu Street, Ojo Lagos"
+          />
+        </div>
+        {/* Address bar below map */}
+        <div className="flex items-center justify-center gap-3 py-4 px-4" style={{background: '#0a0f2e'}}>
+          <MapPin className="w-5 h-5 flex-shrink-0" style={{color: '#C9A84C'}} />
+          <p className="text-sm font-medium" style={{color: '#c8d0e8'}}>
+            20 Fatai Ologundudu Street, Muwo Tedi Ojo, Lagos
+          </p>
+          <a
+            href="https://www.google.com/maps/search/20+Fatai+Ologundudu+Street+Muwo+Tedi+Ojo+Lagos"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="ml-2 text-xs px-3 py-1 rounded-full font-semibold flex-shrink-0"
+            style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}
+          >
+            Open in Maps
+          </a>
         </div>
       </section>
     </div>
