@@ -1,14 +1,45 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Clock, MessageCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { Mail, Phone, MapPin, Send, Clock, MessageCircle, Loader2, AlertCircle } from 'lucide-react';
 
 function Contact() {
+  // EmailJS config
+  const EMAILJS_SERVICE_ID  = 'service_8mpjnr9';
+  const EMAILJS_TEMPLATE_ID = 'template_8lef2cg'; // Using same as booking for now, may need separate template
+  const EMAILJS_PUBLIC_KEY  = 'pecAfT7K_IOqPfuSt';
+
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => { setSubmitted(false); setFormData({ name: '', email: '', phone: '', subject: '', message: '' }); }, 5000);
+    setSending(true);
+    setError('');
+
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          subject: formData.subject,
+          message: formData.message,
+          to_email: 'queendeeservicesqds@gmail.com',
+        },
+        EMAILJS_PUBLIC_KEY
+      );
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      setError('Failed to send message. Please try again or contact us directly.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -54,6 +85,12 @@ function Contact() {
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="rounded-2xl shadow-lg p-8" style={{background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.2)'}}>
               <h2 className="text-2xl font-bold text-white mb-6">Send Us a Message</h2>
+              {error && (
+                <div className="rounded-lg p-4 mb-6 flex items-center" style={{background: 'rgba(220,53,69,0.1)', border: '1px solid rgba(220,53,69,0.3)'}}>
+                  <AlertCircle className="w-5 h-5 mr-3 flex-shrink-0" style={{color: '#dc3545'}} />
+                  <p style={{color: '#dc3545'}}>{error}</p>
+                </div>
+              )}
               {submitted ? (
                 <div className="rounded-lg p-6 text-center" style={{background: 'rgba(201,168,76,0.1)', border: '1px solid rgba(201,168,76,0.3)'}}>
                   <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{background: 'rgba(201,168,76,0.2)'}}>
@@ -66,21 +103,21 @@ function Contact() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label className="block text-sm font-semibold mb-2" style={{color: '#C9A84C'}}>Full Name *</label>
-                    <input type="text" name="name" value={formData.name} onChange={handleChange} required style={inputStyle} placeholder="Your full name" />
+                    <input type="text" name="name" value={formData.name} onChange={handleChange} required style={inputStyle} placeholder="Your full name" disabled={sending} />
                   </div>
                   <div className="grid md:grid-cols-2 gap-6">
                     <div>
                       <label className="block text-sm font-semibold mb-2" style={{color: '#C9A84C'}}>Email *</label>
-                      <input type="email" name="email" value={formData.email} onChange={handleChange} required style={inputStyle} placeholder="your@email.com" />
+                      <input type="email" name="email" value={formData.email} onChange={handleChange} required style={inputStyle} placeholder="your@email.com" disabled={sending} />
                     </div>
                     <div>
                       <label className="block text-sm font-semibold mb-2" style={{color: '#C9A84C'}}>Phone *</label>
-                      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required style={inputStyle} placeholder="+234 XXX XXX XXXX" />
+                      <input type="tel" name="phone" value={formData.phone} onChange={handleChange} required style={inputStyle} placeholder="+234 XXX XXX XXXX" disabled={sending} />
                     </div>
                   </div>
                   <div>
                     <label className="block text-sm font-semibold mb-2" style={{color: '#C9A84C'}}>Subject *</label>
-                    <select name="subject" value={formData.subject} onChange={handleChange} required style={{...inputStyle, appearance: 'none'}}>
+                    <select name="subject" value={formData.subject} onChange={handleChange} required style={{...inputStyle, appearance: 'none'}} disabled={sending}>
                       <option value="" style={{background: '#0a0f2e'}}>Select a subject</option>
                       <option value="general" style={{background: '#0a0f2e'}}>General Inquiry</option>
                       <option value="booking" style={{background: '#0a0f2e'}}>Booking Inquiry</option>
@@ -91,11 +128,20 @@ function Contact() {
                   </div>
                   <div>
                     <label className="block text-sm font-semibold mb-2" style={{color: '#C9A84C'}}>Message *</label>
-                    <textarea name="message" value={formData.message} onChange={handleChange} required rows={6} style={{...inputStyle, resize: 'none'}} placeholder="How can we help you?" />
+                    <textarea name="message" value={formData.message} onChange={handleChange} required rows={6} style={{...inputStyle, resize: 'none'}} placeholder="How can we help you?" disabled={sending} />
                   </div>
-                  <button type="submit" className="w-full py-4 rounded-lg font-bold text-lg shadow-lg transition-all flex items-center justify-center space-x-2" style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}>
-                    <span>Send Message</span>
-                    <Send className="w-5 h-5" />
+                  <button type="submit" disabled={sending} className="w-full py-4 rounded-lg font-bold text-lg shadow-lg transition-all flex items-center justify-center space-x-2" style={{background: sending ? '#666' : 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e'}}>
+                    {sending ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <Send className="w-5 h-5" />
+                      </>
+                    )}
                   </button>
                 </form>
               )}
