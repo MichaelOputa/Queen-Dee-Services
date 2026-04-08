@@ -16,7 +16,11 @@ interface SharedStorage {
   set: (key: string, value: string, cache?: boolean) => Promise<void>;
 }
 
-function Testimonials() {
+interface TestimonialsProps {
+  setCurrentPage?: (page: string) => void;
+}
+
+function Testimonials({ setCurrentPage }: TestimonialsProps) {
   const builtInTestimonials = [
     { name: 'Mrs. Adebayo Folake', location: 'Lekki, Lagos', rating: 5, text: 'Queen Dee Services transformed my home! Their attention to detail is incredible. Every corner was spotless, and the team was so professional and respectful. I highly recommend them to anyone looking for quality cleaning services in Lagos.', service: 'Residential Cleaning' },
     { name: 'Chief Emmanuel Okonkwo', location: 'Victoria Island, Lagos', rating: 5, text: 'We have been using Queen Dee Services for our corporate office for over a year now. They are reliable, thorough, and always exceed our expectations. Our employees appreciate coming to a clean and fresh workspace every morning.', service: 'Office Cleaning' },
@@ -51,7 +55,6 @@ function Testimonials() {
   const getSharedStorage = (): SharedStorage | undefined =>
     (window as Window & { storage?: SharedStorage }).storage;
 
-  // Load reviews from shared storage
   useEffect(() => {
     const loadReviews = async () => {
       try {
@@ -72,11 +75,7 @@ function Testimonials() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    const newReview: Review = {
-      id: Date.now().toString(),
-      ...formData,
-      timestamp: Date.now(),
-    };
+    const newReview: Review = { id: Date.now().toString(), ...formData, timestamp: Date.now() };
     const updatedReviews = [newReview, ...userReviews];
     try {
       const storage = getSharedStorage();
@@ -86,7 +85,6 @@ function Testimonials() {
       setFormData(emptyForm);
       setTimeout(() => setSubmitted(false), 4000);
     } catch {
-      // fallback: still show locally
       setUserReviews(updatedReviews);
       setSubmitted(true);
       setTimeout(() => setSubmitted(false), 4000);
@@ -95,14 +93,22 @@ function Testimonials() {
     }
   };
 
-  const formatDate = (ts: number) => {
-    return new Date(ts).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
-  };
+  const formatDate = (ts: number) =>
+    new Date(ts).toLocaleDateString('en-NG', { day: 'numeric', month: 'short', year: 'numeric' });
 
   const inputStyle = {
     width: '100%', padding: '12px 16px', borderRadius: '8px', outline: 'none',
     background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.3)',
     color: 'white', transition: 'border-color 0.2s',
+  };
+
+  const handleBookNow = () => {
+    if (setCurrentPage) {
+      setCurrentPage('booking');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.open('https://wa.me/2349132433968?text=Hi%20Queen%20Dee%20Services!%20I%20would%20like%20to%20book%20a%20cleaning%20service.', '_blank');
+    }
   };
 
   return (
@@ -124,7 +130,7 @@ function Testimonials() {
             ))}
           </div>
 
-          {/* ── Leave a Review Form ── */}
+          {/* Leave a Review Form */}
           <div className="rounded-2xl p-8 mb-16" style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(201,168,76,0.3)' }}>
             <h2 className="text-2xl font-bold text-white mb-2">Share Your Experience</h2>
             <p className="mb-8 text-sm" style={{ color: '#c8d0e8' }}>Your review will be visible to everyone. Help others discover the Queen Dee difference!</p>
@@ -142,33 +148,17 @@ function Testimonials() {
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="block text-sm font-semibold mb-2" style={{ color: '#C9A84C' }}>Your Name *</label>
-                    <input
-                      type="text" required
-                      value={formData.name}
-                      onChange={e => setFormData({ ...formData, name: e.target.value })}
-                      style={inputStyle} placeholder="e.g. Mrs. Folake Adebayo"
-                    />
+                    <input type="text" required value={formData.name} onChange={e => setFormData({ ...formData, name: e.target.value })} style={inputStyle} placeholder="e.g. Mrs. Folake Adebayo" />
                   </div>
                   <div>
                     <label className="block text-sm font-semibold mb-2" style={{ color: '#C9A84C' }}>Location</label>
-                    <input
-                      type="text"
-                      value={formData.location}
-                      onChange={e => setFormData({ ...formData, location: e.target.value })}
-                      style={inputStyle} placeholder="e.g. Lekki, Lagos"
-                    />
+                    <input type="text" value={formData.location} onChange={e => setFormData({ ...formData, location: e.target.value })} style={inputStyle} placeholder="e.g. Lekki, Lagos" />
                   </div>
                 </div>
-
                 <div className="grid md:grid-cols-2 gap-6 mb-6">
                   <div>
                     <label className="block text-sm font-semibold mb-2" style={{ color: '#C9A84C' }}>Service Used *</label>
-                    <select
-                      required
-                      value={formData.service}
-                      onChange={e => setFormData({ ...formData, service: e.target.value })}
-                      style={{ ...inputStyle, appearance: 'none' }}
-                    >
+                    <select required value={formData.service} onChange={e => setFormData({ ...formData, service: e.target.value })} style={{ ...inputStyle, appearance: 'none' }}>
                       <option value="" style={{ background: '#0a0f2e' }}>Select a service</option>
                       {services.map(s => <option key={s} value={s} style={{ background: '#0a0f2e' }}>{s}</option>)}
                     </select>
@@ -177,42 +167,16 @@ function Testimonials() {
                     <label className="block text-sm font-semibold mb-3" style={{ color: '#C9A84C' }}>Your Rating *</label>
                     <div className="flex gap-2">
                       {[1, 2, 3, 4, 5].map(star => (
-                        <button
-                          key={star} type="button"
-                          onClick={() => setFormData({ ...formData, rating: star })}
-                          onMouseEnter={() => setHoveredStar(star)}
-                          onMouseLeave={() => setHoveredStar(0)}
-                          className="text-3xl transition-transform hover:scale-110"
-                          style={{ color: star <= (hoveredStar || formData.rating) ? '#C9A84C' : 'rgba(201,168,76,0.25)', background: 'none', border: 'none', cursor: 'pointer', padding: '0 2px' }}
-                        >
-                          ★
-                        </button>
+                        <button key={star} type="button" onClick={() => setFormData({ ...formData, rating: star })} onMouseEnter={() => setHoveredStar(star)} onMouseLeave={() => setHoveredStar(0)} className="text-3xl transition-transform hover:scale-110" style={{ color: star <= (hoveredStar || formData.rating) ? '#C9A84C' : 'rgba(201,168,76,0.25)', background: 'none', border: 'none', cursor: 'pointer', padding: '0 2px' }}>★</button>
                       ))}
                     </div>
                   </div>
                 </div>
-
                 <div className="mb-6">
                   <label className="block text-sm font-semibold mb-2" style={{ color: '#C9A84C' }}>Your Review *</label>
-                  <textarea
-                    required
-                    value={formData.text}
-                    onChange={e => setFormData({ ...formData, text: e.target.value })}
-                    rows={4}
-                    style={{ ...inputStyle, resize: 'none' }}
-                    placeholder="Tell us about your experience with Queen Dee Services..."
-                    minLength={20}
-                  />
+                  <textarea required value={formData.text} onChange={e => setFormData({ ...formData, text: e.target.value })} rows={4} style={{ ...inputStyle, resize: 'none' }} placeholder="Tell us about your experience with Queen Dee Services..." minLength={20} />
                 </div>
-
-                <button
-                  type="submit" disabled={loading}
-                  className="flex items-center gap-3 px-8 py-3 rounded-lg font-bold transition-all"
-                  style={{
-                    background: loading ? 'rgba(201,168,76,0.4)' : 'linear-gradient(135deg, #C9A84C, #e8c96a)',
-                    color: '#0a0f2e', cursor: loading ? 'not-allowed' : 'pointer',
-                  }}
-                >
+                <button type="submit" disabled={loading} className="flex items-center gap-3 px-8 py-3 rounded-lg font-bold transition-all" style={{ background: loading ? 'rgba(201,168,76,0.4)' : 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e', cursor: loading ? 'not-allowed' : 'pointer' }}>
                   {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
                   {loading ? 'Submitting…' : 'Submit Review'}
                 </button>
@@ -220,7 +184,7 @@ function Testimonials() {
             )}
           </div>
 
-          {/* ── User-submitted reviews ── */}
+          {/* User-submitted reviews */}
           {!loadingReviews && userReviews.length > 0 && (
             <div className="mb-12">
               <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
@@ -235,9 +199,7 @@ function Testimonials() {
                   <div key={review.id} className="rounded-2xl p-6 hover:shadow-xl transition-all" style={{ background: 'rgba(201,168,76,0.06)', border: '1px solid rgba(201,168,76,0.25)' }}>
                     <div className="flex items-center justify-between mb-4">
                       <div className="flex gap-0.5">
-                        {[...Array(5)].map((_, i) => (
-                          <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-600'}`} />
-                        ))}
+                        {[...Array(5)].map((_, i) => <Star key={i} className={`w-4 h-4 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-600'}`} />)}
                       </div>
                       <span className="text-xs" style={{ color: '#8899bb' }}>{formatDate(review.timestamp)}</span>
                     </div>
@@ -248,11 +210,7 @@ function Testimonials() {
                         <h4 className="font-bold text-white text-sm">{review.name}</h4>
                         {review.location && <p className="text-xs" style={{ color: '#8899bb' }}>{review.location}</p>}
                       </div>
-                      {review.service && (
-                        <span className="text-xs px-2 py-1 rounded-full" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)' }}>
-                          {review.service}
-                        </span>
-                      )}
+                      {review.service && <span className="text-xs px-2 py-1 rounded-full" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)' }}>{review.service}</span>}
                     </div>
                   </div>
                 ))}
@@ -260,7 +218,7 @@ function Testimonials() {
             </div>
           )}
 
-          {/* ── Built-in testimonials ── */}
+          {/* Built-in testimonials */}
           <div>
             <h2 className="text-2xl font-bold text-white mb-6">More Client Stories</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -268,9 +226,7 @@ function Testimonials() {
                 <div key={index} className="rounded-2xl p-6 hover:shadow-xl transition-all" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.15)' }}>
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center space-x-1">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                      ))}
+                      {[...Array(testimonial.rating)].map((_, i) => <Star key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />)}
                     </div>
                     <Quote className="w-8 h-8" style={{ color: 'rgba(201,168,76,0.3)' }} />
                   </div>
@@ -281,9 +237,7 @@ function Testimonials() {
                         <h4 className="font-bold text-white">{testimonial.name}</h4>
                         <p className="text-sm" style={{ color: '#8899bb' }}>{testimonial.location}</p>
                       </div>
-                      <span className="text-xs px-3 py-1 rounded-full font-medium" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)' }}>
-                        {testimonial.service}
-                      </span>
+                      <span className="text-xs px-3 py-1 rounded-full font-medium" style={{ background: 'rgba(201,168,76,0.15)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.3)' }}>{testimonial.service}</span>
                     </div>
                   </div>
                 </div>
@@ -297,7 +251,12 @@ function Testimonials() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold mb-6" style={{ color: '#0a0f2e' }}>Join Hundreds of Satisfied Customers</h2>
           <p className="mb-8 text-lg" style={{ color: '#4a5568' }}>Experience the exceptional service that has earned us a 98% satisfaction rate. Book your cleaning service today!</p>
-          <button className="px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition-all" style={{ background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e' }}>
+          {/* Fixed: was a dead button, now navigates to booking */}
+          <button
+            onClick={handleBookNow}
+            className="px-8 py-4 rounded-lg font-bold text-lg shadow-lg transition-all"
+            style={{ background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e', cursor: 'pointer' }}
+          >
             Book Your Service Now
           </button>
         </div>

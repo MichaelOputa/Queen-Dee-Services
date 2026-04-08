@@ -24,7 +24,8 @@ function App() {
       case 'gallery':
         return <Gallery />;
       case 'testimonials':
-        return <Testimonials />;
+        // Fixed: pass setCurrentPage so the "Book Your Service Now" button works
+        return <Testimonials setCurrentPage={setCurrentPage} />;
       case 'booking':
         return <Booking />;
       case 'contact':
