@@ -50,16 +50,13 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
             onClick={() => handleNavClick('home')}
           >
             <img
-              src="/ltd.jpeg"
+              src="/ltd.png"
               alt="Queen Dee Integrated Services LTD"
               style={{
-                width: '64px',
-                height: '64px',
+                height: '60px',
+                width: 'auto',
                 objectFit: 'contain',
-                borderRadius: '10px',
-                border: '2px solid rgba(201,168,76,0.7)',
-                boxShadow: '0 0 14px rgba(201,168,76,0.45), 0 2px 8px rgba(0,0,0,0.4)',
-                background: '#0a0f2e',
+                filter: 'drop-shadow(0 0 10px rgba(201,168,76,0.35))',
               }}
             />
             <div className="flex flex-col leading-tight">

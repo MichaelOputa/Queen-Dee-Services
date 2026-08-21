@@ -26,16 +26,13 @@ function Footer({ setCurrentPage }: FooterProps) {
           <div>
             <div className="flex items-center space-x-4 mb-6">
               <img
-                src="/ltd.jpeg"
+                src="/ltd.png"
                 alt="Queen Dee Integrated Services LTD"
                 style={{
-                  width: '70px',
-                  height: '70px',
+                  height: '66px',
+                  width: 'auto',
                   objectFit: 'contain',
-                  borderRadius: '10px',
-                  border: '2px solid rgba(201,168,76,0.7)',
-                  boxShadow: '0 0 16px rgba(201,168,76,0.4), 0 2px 10px rgba(0,0,0,0.5)',
-                  background: '#0a0f2e',
+                  filter: 'drop-shadow(0 0 12px rgba(201,168,76,0.35))',
                   flexShrink: 0,
                 }}
               />
