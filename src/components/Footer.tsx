@@ -51,7 +51,7 @@ function Footer({ setCurrentPage }: FooterProps) {
   const services = ['Residential Cleaning', 'Office Cleaning', 'Deep Cleaning', 'Fumigation', 'Carpet Cleaning', 'Janitorial Services'];
 
   return (
-    <footer style={{background: '#050b20', borderTop: '1px solid rgba(201,168,76,0.2)'}}>
+    <footer style={{background: '#0B1F3A', borderTop: '1px solid rgba(212,175,55,0.25)'}}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
@@ -70,10 +70,10 @@ function Footer({ setCurrentPage }: FooterProps) {
               <div className="flex flex-col leading-tight">
                 <span className="font-extrabold text-white" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Queen Dee Integrated</span>
                 <span className="font-extrabold text-white" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Services LTD</span>
-                <span className="text-xs font-semibold" style={{color: '#C9A84C', letterSpacing: '0.08em'}}>One Call Cleanse All</span>
+                <span className="text-xs font-semibold" style={{color: '#D4AF37', letterSpacing: '0.08em'}}>One Call Cleanse All</span>
               </div>
             </div>
-            <p className="mb-6 leading-relaxed" style={{color: '#8899bb'}}>Nigeria's trusted cleaning partner, delivering exceptional service across Lagos. Professional, reliable, and committed to excellence.</p>
+            <p className="mb-6 leading-relaxed" style={{color: '#E7ECF3'}}>Nigeria's trusted cleaning partner, delivering exceptional service across Lagos. Professional, reliable, and committed to excellence.</p>
             <div className="flex flex-wrap gap-3">
               {socialLinks.map(({ href, label, icon: Icon }) => (
                 <a
@@ -83,7 +83,7 @@ function Footer({ setCurrentPage }: FooterProps) {
                   rel="noopener noreferrer"
                   aria-label={label}
                   className="p-3 rounded-full transition-colors"
-                  style={{background: 'rgba(201,168,76,0.1)', color: '#C9A84C', border: '1px solid rgba(201,168,76,0.2)'}}
+                  style={{background: 'rgba(212,175,55,0.1)', color: '#D4AF37', border: '1px solid rgba(212,175,55,0.2)'}}
                 >
                   <Icon className="w-5 h-5" />
                 </a>
@@ -96,9 +96,9 @@ function Footer({ setCurrentPage }: FooterProps) {
             <ul className="space-y-3">
               {[...quickLinks, { name: 'Testimonials', page: 'testimonials' }, { name: 'Contact', page: 'contact' }].map((link) => (
                 <li key={link.page}>
-                  <button onClick={() => handleNavClick(link.page)} className="transition-colors" style={{color: '#8899bb'}}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#C9A84C')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#8899bb')}
+                  <button onClick={() => handleNavClick(link.page)} className="transition-colors" style={{color: '#E7ECF3'}}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#D4AF37')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#E7ECF3')}
                   >{link.name}</button>
                 </li>
               ))}
@@ -110,9 +110,9 @@ function Footer({ setCurrentPage }: FooterProps) {
             <ul className="space-y-3">
               {services.map((service, index) => (
                 <li key={index}>
-                  <button onClick={() => handleNavClick('services')} className="transition-colors" style={{color: '#8899bb'}}
-                    onMouseEnter={e => (e.currentTarget.style.color = '#C9A84C')}
-                    onMouseLeave={e => (e.currentTarget.style.color = '#8899bb')}
+                  <button onClick={() => handleNavClick('services')} className="transition-colors" style={{color: '#E7ECF3'}}
+                    onMouseEnter={e => (e.currentTarget.style.color = '#D4AF37')}
+                    onMouseLeave={e => (e.currentTarget.style.color = '#E7ECF3')}
                   >{service}</button>
                 </li>
               ))}

@@ -16,6 +16,16 @@ function Gallery() {
   const [activeTab, setActiveTab] = useState<'all' | 'images' | 'videos'>('all');
 
   const galleryItems: GalleryItem[] = [
+    // Homepage showcase moved into gallery
+    { id: 'showcase-1', title: 'Kitchen transformation', category: 'Residential', type: 'after', mediaType: 'image', url: '/cleanups.jpeg' },
+    { id: 'showcase-2', title: 'Bedroom reset', category: 'Residential', type: 'after', mediaType: 'image', url: '/cleanups 2.jpeg' },
+    { id: 'showcase-3', title: 'Deep-cleaned room', category: 'Deep Cleaning', type: 'after', mediaType: 'image', url: '/cleanups 3.jpeg' },
+    { id: 'showcase-4', title: 'Bedroom cleaning in progress', category: 'Residential', type: 'after', mediaType: 'image', url: '/crew.jpeg' },
+    { id: 'showcase-5', title: 'Residential cleaning project', category: 'Residential', type: 'after', mediaType: 'image', url: '/crews.jpeg' },
+    { id: 'showcase-6', title: 'Team in action', category: 'Commercial', type: 'after', mediaType: 'image', url: '/crew at work.jpeg' },
+    { id: 'showcase-7', title: 'Cleaning service flyer', category: 'Promotions', type: 'after', mediaType: 'image', url: '/flyer.jpeg' },
+    { id: 'showcase-8', title: '5 years anniversary celebration', category: 'Milestone', type: 'after', mediaType: 'image', url: '/5 years anniversary..jpeg' },
+    { id: 'showcase-9', title: 'We are hiring poster', category: 'Careers', type: 'after', mediaType: 'image', url: '/hiring.jpeg' },
     // Images
     { id: '1',  title: 'Modern Bed Room',               category: 'Residential',      type: 'before', mediaType: 'image', url: 'before.jpg' },
     { id: '2',  title: 'Modern Bed Room',               category: 'Residential',      type: 'after',  mediaType: 'image', url: 'after.jpg' },

@@ -38,10 +38,10 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
     <nav
       className="fixed w-full z-50 transition-all duration-300"
       style={{
-        background: isScrolled ? '#0a0f2e' : 'rgba(10,15,46,0.97)',
+        background: isScrolled ? '#0B1F3A' : 'rgba(11,31,58,0.97)',
         backdropFilter: 'blur(12px)',
-        borderBottom: '1px solid rgba(201,168,76,0.25)',
-        boxShadow: isScrolled ? '0 4px 24px rgba(10,15,46,0.4)' : 'none',
+        borderBottom: '1px solid rgba(212,175,55,0.25)',
+        boxShadow: isScrolled ? '0 4px 24px rgba(17,17,17,0.2)' : 'none',
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -63,7 +63,7 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
             <div className="flex flex-col leading-tight">
               <span className="font-extrabold text-white tracking-wide" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Queen Dee Integrated</span>
               <span className="font-extrabold text-white tracking-wide" style={{fontSize: '1rem', letterSpacing: '0.03em'}}>Services LTD</span>
-              <span className="text-xs font-semibold" style={{color: '#C9A84C', letterSpacing: '0.08em'}}>One Call Cleanse All</span>
+              <span className="text-xs font-semibold" style={{color: '#D4AF37', letterSpacing: '0.08em'}}>One Call Cleanse All</span>
             </div>
           </div>
 
@@ -74,10 +74,10 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
                 onClick={() => handleNavClick(link.page)}
                 className="text-sm font-medium transition-colors"
                 style={{
-                  color: currentPage === link.page ? '#C9A84C' : '#c8d0e8',
+                  color: currentPage === link.page ? '#D4AF37' : '#E7ECF3',
                 }}
-                onMouseEnter={e => { if (currentPage !== link.page) e.currentTarget.style.color = '#C9A84C'; }}
-                onMouseLeave={e => { if (currentPage !== link.page) e.currentTarget.style.color = '#c8d0e8'; }}
+                onMouseEnter={e => { if (currentPage !== link.page) e.currentTarget.style.color = '#D4AF37'; }}
+                onMouseLeave={e => { if (currentPage !== link.page) e.currentTarget.style.color = '#E7ECF3'; }}
               >
                 {link.name}
               </button>
@@ -85,9 +85,9 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
             <button
               onClick={() => handleNavClick('booking')}
               className="px-6 py-2.5 rounded-lg font-medium transition-all shadow-md"
-              style={{background: 'linear-gradient(135deg, #C9A84C, #e8c96a)', color: '#0a0f2e', fontWeight: 700}}
-              onMouseEnter={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #b8963e, #C9A84C)')}
-              onMouseLeave={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #C9A84C, #e8c96a)')}
+              style={{background: 'linear-gradient(135deg, #D4AF37, #E7D38B)', color: '#0B1F3A', fontWeight: 700}}
+              onMouseEnter={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #B08A1A, #D4AF37)')}
+              onMouseLeave={e => (e.currentTarget.style.background = 'linear-gradient(135deg, #D4AF37, #E7D38B)')}
             >
               Book Now
             </button>
