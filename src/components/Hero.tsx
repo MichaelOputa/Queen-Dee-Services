@@ -1,4 +1,5 @@
-import { ArrowRight, CheckCircle, Star, Shield, Clock } from 'lucide-react';
+import { ArrowRight, CheckCircle, Star, Shield, Clock, X } from 'lucide-react';
+import { useState } from 'react';
 
 function Hero() {
   const features = [
@@ -13,6 +14,35 @@ function Hero() {
     'Satisfaction guaranteed',
     'Available across Lagos, major Nigerian cities & outside Nigeria',
   ];
+
+  const homeTips = [
+    { file: '/4.jpeg', title: 'Day 4', text: 'Your mattress should be cleaned too.' },
+    { file: '/5.jpeg', title: 'Day 5', text: 'Fans collect hidden dust.' },
+    { file: '/6.jpeg', title: 'Day 6', text: 'Kitchen cabinets need cleaning inside and outside.' },
+    { file: '/7.jpeg', title: 'Day 7', text: 'Windows should be cleaned regularly.' },
+    { file: '/8.jpeg', title: 'Day 8', text: 'Your toilet brush holder should be washed.' },
+    { file: '/9.jpeg', title: 'Day 9', text: 'Light switches are often ignored.' },
+  ];
+
+  const proofItems = [
+    { image: '/cleanups.jpeg', title: 'Kitchen transformation' },
+    { image: '/cleanups 2.jpeg', title: 'Bedroom reset' },
+    { image: '/cleanups 3.jpeg', title: 'Deep-cleaned room' },
+  ];
+
+  const crewWork = [
+    { image: '/crew.jpeg', title: 'Bedroom cleaning in progress' },
+    { image: '/crews.jpeg', title: 'Residential cleaning project' },
+    { image: '/crew at work.jpeg', title: 'Team in action' },
+  ];
+
+  const promoPosters = [
+    { image: '/flyer.jpeg', title: 'Cleaning service flyer', tag: 'Service promo' },
+    { image: '/5 years anniversary..jpeg', title: '5 years anniversary celebration', tag: 'Milestone event' },
+    { image: '/hiring.jpeg', title: 'We are hiring poster', tag: 'Careers' },
+  ];
+
+  const [selectedPoster, setSelectedPoster] = useState<string | null>(null);
 
   return (
     <div className="pt-20">
@@ -95,6 +125,152 @@ function Hero() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-20 border-t" style={{background: '#f8f6f0', borderColor: '#e8d9b0'}}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#C9A84C' }}>Proof of Diligence</span>
+            <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-4" style={{color: '#0a0f2e'}}>
+              Real transformations. Real shine.
+            </h2>
+            <p className="max-w-3xl mx-auto text-lg" style={{color: '#4a5568'}}>
+              Our work speaks for itself. These before-and-after results show the level of care,
+              attention, and professionalism we bring to every project.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {proofItems.map((item) => (
+              <button
+                key={item.title}
+                type="button"
+                onClick={() => setSelectedPoster(item.image)}
+                className="rounded-3xl overflow-hidden border shadow-lg text-left cursor-pointer group"
+                style={{background: '#fff', borderColor: 'rgba(201,168,76,0.2)'}}
+                aria-label={`Open ${item.title} in full screen`}
+              >
+                <div className="relative">
+                  <div className="absolute left-3 top-3 z-10 px-2 py-1 rounded-full text-[10px] font-bold uppercase tracking-wide" style={{background: 'rgba(10,15,46,0.8)', color: '#f8f6f0'}}>
+                    Before & After
+                  </div>
+                  <img src={item.image} alt={item.title} className="w-full h-[420px] object-cover group-hover:scale-105 transition-transform duration-300" />
+                </div>
+                <div className="p-5">
+                  <h3 className="text-xl font-bold mb-1" style={{color: '#0a0f2e'}}>{item.title}</h3>
+                  <p style={{color: '#4a5568'}}>Deep cleaning, proper finishing, and detail-focused service that leaves every space fresh and welcoming.</p>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-20">
+            <div className="text-center mb-8">
+              <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#C9A84C' }}>Crew at work</span>
+              <h3 className="text-2xl md:text-4xl font-bold mt-3" style={{color: '#0a0f2e'}}>Our team in action</h3>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {crewWork.map((shot) => (
+                <button
+                  key={shot.title}
+                  type="button"
+                  onClick={() => setSelectedPoster(shot.image)}
+                  className="overflow-hidden rounded-2xl border group shadow-md hover:shadow-xl transition-all text-left cursor-pointer"
+                  style={{borderColor: 'rgba(201,168,76,0.2)', background: '#fff'}}
+                  aria-label={`Open ${shot.title} in full screen`}
+                >
+                  <img src={shot.image} alt={shot.title} className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="p-4">
+                    <p className="font-semibold" style={{color: '#0a0f2e'}}>{shot.title}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-20">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+              <div>
+                <p className="text-sm font-semibold uppercase tracking-[0.18em]" style={{ color: '#C9A84C' }}>Campaigns</p>
+                <h3 className="text-2xl md:text-3xl font-bold mt-2" style={{ color: '#0a0f2e' }}>Our latest promotions & milestones</h3>
+              </div>
+              <p className="max-w-lg text-sm md:text-base" style={{ color: '#4a5568' }}>
+                Real marketing moments that show how we keep our brand visible, trustworthy, and people-focused.
+              </p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8">
+              {promoPosters.map((poster) => (
+                <button
+                  key={poster.title}
+                  type="button"
+                  onClick={() => setSelectedPoster(poster.image)}
+                  className="group relative overflow-hidden rounded-[28px] border shadow-lg hover:shadow-2xl transition-all text-left cursor-pointer"
+                  style={{borderColor: 'rgba(201,168,76,0.25)', background: '#fff'}}
+                  aria-label={`Open ${poster.title} in full screen`}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0f2e]/80 via-[#0a0f2e]/10 to-transparent z-10" />
+                  <img src={poster.image} alt={poster.title} className="w-full h-[470px] object-cover group-hover:scale-105 transition-transform duration-300" />
+                  <div className="absolute inset-x-0 bottom-0 z-20 p-5">
+                    <span className="inline-flex items-center rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em]" style={{ background: 'rgba(201,168,76,0.15)', color: '#f5e7aa' }}>
+                      {poster.tag}
+                    </span>
+                    <p className="mt-3 text-xl font-bold text-white leading-tight">{poster.title}</p>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {selectedPoster && (
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4"
+              onClick={() => setSelectedPoster(null)}
+            >
+              <div className="relative w-full max-w-5xl rounded-2xl border border-white/10 bg-black/70 p-3 shadow-2xl" onClick={(event) => event.stopPropagation()}>
+                <button
+                  type="button"
+                  onClick={() => setSelectedPoster(null)}
+                  className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition hover:bg-white/20"
+                  aria-label="Close full screen image"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+                <img
+                  src={selectedPoster}
+                  alt="Selected poster preview"
+                  className="max-h-[90vh] w-full rounded-xl object-contain"
+                />
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="py-20 border-t" style={{background: '#f8f6f0', borderColor: '#e8d9b0'}}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <span className="font-semibold text-sm uppercase tracking-wide" style={{ color: '#C9A84C' }}>Cleaning Tips</span>
+            <h2 className="text-3xl md:text-5xl font-bold mt-4 mb-4" style={{ color: '#0a0f2e' }}>
+              Everyday home care reminders
+            </h2>
+            <p className="max-w-3xl mx-auto text-lg" style={{ color: '#4a5568' }}>
+              A few quick reminders that help keep your space cleaner, healthier, and more comfortable every day.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            {homeTips.map((tip) => (
+              <div key={tip.file} className="rounded-3xl overflow-hidden border shadow-lg hover:shadow-xl transition-all" style={{ background: '#fff', borderColor: 'rgba(201,168,76,0.2)' }}>
+                <img src={tip.file} alt={tip.title} className="w-full h-80 object-cover" />
+                <div className="p-5">
+                  <div className="mb-2 text-sm font-bold uppercase tracking-wide" style={{ color: '#C9A84C' }}>{tip.title}</div>
+                  <p className="text-lg font-medium" style={{ color: '#0a0f2e' }}>{tip.text}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

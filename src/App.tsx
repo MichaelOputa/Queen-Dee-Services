@@ -7,6 +7,7 @@ import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
 import Booking from './components/Booking';
 import Contact from './components/Contact';
+import CleaningTips from './components/CleaningTips';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -23,6 +24,8 @@ function App() {
         return <Services />;
       case 'gallery':
         return <Gallery />;
+      case 'tips':
+        return <CleaningTips />;
       case 'testimonials':
         // Fixed: pass setCurrentPage so the "Book Your Service Now" button works
         return <Testimonials setCurrentPage={setCurrentPage} />;

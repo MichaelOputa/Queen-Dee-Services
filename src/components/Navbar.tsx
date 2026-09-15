@@ -23,6 +23,7 @@ function Navbar({ currentPage, setCurrentPage }: NavbarProps) {
     { name: 'About Us', page: 'about' },
     { name: 'Services', page: 'services' },
     { name: 'Gallery', page: 'gallery' },
+    { name: 'Cleaning Tips', page: 'tips' },
     { name: 'Testimonials', page: 'testimonials' },
     { name: 'Contact', page: 'contact' },
   ];
